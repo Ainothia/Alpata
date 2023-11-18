@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "Alpata"
+  "defaultProject": "Alpata",
+  "cli": {
+    "analytics": "b39cf8c7-cf1a-47b5-bd21-7ac2c88f2007"
+  }
 }

@@ -10,7 +10,6 @@ public class UserManager : IUserService
 	private readonly ICryptographyHelper _cryptographyHelper;
 	private readonly IFileHelper _fileHelper;
 
-
     public UserManager(AlpataAPIDbContext dbContext, ICryptographyHelper cryptographyHelper, IFileHelper fileHelper)
 	{
 		_dbContext = dbContext;

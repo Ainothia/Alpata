@@ -9,6 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin();
+            builder.AllowAnyMethod();
+            builder.AllowAnyHeader();
+        });
+});
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -38,6 +48,9 @@ if (!app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "AlpataAPI V1");
     });
 }
+
+app.UseCors("AllowAllOrigins");
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
