@@ -19,9 +19,6 @@ public class MeetingManager : IMeetingService
 
     public Meeting Create(SaveMeetingRequestDto createMeetingRequestDto)
     {
-        //Validasyon yapılacak
-        //AutoMapper kullanılacak
-
         Meeting entity = new Meeting
         {
             UserId = createMeetingRequestDto.UserId,

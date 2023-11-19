@@ -10,13 +10,10 @@ public class CryptographyHelper : ICryptographyHelper
     {
         using (SHA256 sha256 = SHA256.Create())
         {
-            // Convert the password string to byte array
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-            // Compute the hash
             byte[] hashBytes = sha256.ComputeHash(passwordBytes);
 
-            // Convert the hash to a hexadecimal string
             StringBuilder sb = new StringBuilder();
             foreach (byte b in hashBytes)
             {

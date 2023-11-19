@@ -24,14 +24,15 @@
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
+            *ngIf="userId != null"
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userId == null">
             <a class="nav-link text-dark" [routerLink]="['/login']"
               >Login</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="userId == null">
             <a class="nav-link text-dark" [routerLink]="['/register']"
               >Register</a
             >

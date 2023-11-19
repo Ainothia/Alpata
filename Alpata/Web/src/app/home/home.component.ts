@@ -78,6 +78,7 @@ export class HomeComponent {
     this.meetingService.update(meeting).subscribe(
       () => {
         this.getAll(this.userId);
+        this.resetForm();
       },
       (error) => {
         console.log(error);
@@ -89,6 +90,7 @@ export class HomeComponent {
     this.meetingService.create(meeting).subscribe(
       () => {
         this.getAll(this.userId);
+        this.resetForm();
       },
       (error) => {
         console.log(error);

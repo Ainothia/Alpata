@@ -10,17 +10,23 @@ namespace Alpata.API.Controllers;
 public class MeetingController : Controller
 {
     private readonly IMeetingService _meetingService;
+    private readonly IMailHelper _mailHelper;
 
-    public MeetingController(IMeetingService meetingService)
+    public MeetingController(IMeetingService meetingService,IMailHelper mailHelper)
     {
         _meetingService = meetingService;
+        _mailHelper = mailHelper;
     }
 
     [HttpPost("create")]
     [ProducesDefaultResponseType(typeof(Meeting))]
     public Meeting Create([FromForm] SaveMeetingRequestDto CreateMeetingRequestDto)
     {
-        return _meetingService.Create(CreateMeetingRequestDto);
+        Meeting meeting = _meetingService.Create(CreateMeetingRequestDto);
+
+        _mailHelper.SendMeetingMail(meeting);
+
+        return meeting;
     }
 
     [HttpGet("get/{meetingId}")]

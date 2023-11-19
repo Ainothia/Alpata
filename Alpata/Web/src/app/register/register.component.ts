@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginResponseDto } from 'src/Models/LoginResponseDto';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -13,7 +15,7 @@ export class RegisterComponent {
   password: string;
   photo: File;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
@@ -32,8 +34,9 @@ export class RegisterComponent {
     formData.append('Photo', this.photo);
 
     this.userService.register(formData).subscribe(
-      (response) => {
-        alert(response);
+      (response: LoginResponseDto) => {
+        localStorage.setItem('userId', response.id.toString());
+        this.router.navigate(['/']);
       },
       (error) => {
         console.log(error);

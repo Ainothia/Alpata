@@ -15,5 +15,7 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
+  userId = localStorage.getItem("userId");
 }
 

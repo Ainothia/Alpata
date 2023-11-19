@@ -10,19 +10,24 @@ namespace Alpata.Controllers;
 public class UserController : Controller
 {
 	private readonly IUserService _userService;
+    private readonly IMailHelper _mailHelper;
 
-	public UserController(IUserService userService)
+	public UserController(IUserService userService, IMailHelper mailHelper)
 	{
 		_userService = userService;
+        _mailHelper = mailHelper;
 	}
 
     [HttpPost("save")]
     [ProducesDefaultResponseType(typeof(bool))]
-    public bool Save([FromForm] SaveUserRequestDto saveUserRequestDto)
+    public User Save([FromForm] SaveUserRequestDto saveUserRequestDto)
     {
-        return _userService.Save(saveUserRequestDto);
-    }
+        var user = _userService.Save(saveUserRequestDto);
+        _userService.SendMailAfterRegister(saveUserRequestDto);
 
+        return user;
+    }
+    
     [HttpPost("login")]
     [ProducesDefaultResponseType(typeof(User))]
     public User Login([FromBody] LoginRequestDto loginRequestDto)

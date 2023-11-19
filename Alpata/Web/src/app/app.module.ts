@@ -9,6 +9,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent } from './register/register.component';
+import { AuthGuard } from 'src/services/auth.guard';
+import { AuthGuard2 } from 'src/services/auth2.guard';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,9 @@ import {RegisterComponent } from './register/register.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'fetch-data', component: RegisterComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full',canActivate: [AuthGuard2] },
+      { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+      { path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
     ])
   ],
   providers: [],

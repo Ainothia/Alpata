@@ -1,4 +1,5 @@
-﻿using Alpata.API.Business.Interfaces;
+﻿using System.Net;
+using Alpata.API.Business.Interfaces;
 using Alpata.Entity;
 using Alpata.Model;
 
@@ -17,7 +18,7 @@ public class UserManager : IUserService
 		_fileHelper = fileHelper;
 	}
 
-    public bool Save(SaveUserRequestDto saveUserRequestDto)
+    public User Save(SaveUserRequestDto saveUserRequestDto)
     {
 		var entity = _dbContext
 			.Users
@@ -28,7 +29,6 @@ public class UserManager : IUserService
             throw new Exception("This email is already registered.");
         }
 
-        //AutoMapper kullanılacak
         entity = new User
 		{
 			Name = saveUserRequestDto.Name,
@@ -42,7 +42,7 @@ public class UserManager : IUserService
 		_dbContext.Add(entity);
 		_dbContext.SaveChanges();
 
-		return true;
+		return entity;
     }
 
 	public User Login(LoginRequestDto loginRequestDto)

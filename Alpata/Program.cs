@@ -29,7 +29,8 @@ builder.Services
     .AddScoped<IUserService, UserManager>()
     .AddScoped<IMeetingService, MeetingManager>()
     .AddScoped<ICryptographyHelper, CryptographyHelper>()
-    .AddScoped<IFileHelper, FileHelper>();
+    .AddScoped<IFileHelper, FileHelper>()
+    .AddScoped<IMailHelper,MailHelper>();
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<AlpataAPIDbContext>(options =>

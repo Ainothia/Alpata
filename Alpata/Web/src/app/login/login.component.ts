@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginRequestDto } from 'src/Models/LoginRequestModel';
+import { LoginResponseDto } from 'src/Models/LoginResponseDto';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class LoginComponent {
   password: string;
   loginModel: LoginRequestDto;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   login() {
     this.loginModel = {
@@ -21,8 +23,9 @@ export class LoginComponent {
     };
 
     this.userService.login(this.loginModel).subscribe(
-      (response) => {
-        alert(response);
+      (response: LoginResponseDto) => {
+        localStorage.setItem('userId', response.id.toString());
+        this.router.navigate(['/']);
       },
       (error) => {
         console.log(error);
