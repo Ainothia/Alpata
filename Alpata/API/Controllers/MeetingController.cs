@@ -37,9 +37,9 @@ public class MeetingController : Controller
         return _meetingService.GetAll(userId);
     }
 
-    [HttpDelete("delete")]
+    [HttpDelete("delete/{meetingId}")]
     [ProducesDefaultResponseType(typeof(Meeting))]
-    public Meeting Delete([FromBody] int meetingId)
+    public Meeting Delete(int meetingId)
     {
         return _meetingService.Delete(meetingId);
     }

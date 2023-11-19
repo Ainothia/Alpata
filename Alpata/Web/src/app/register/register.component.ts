@@ -3,7 +3,7 @@ import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
 })
 export class RegisterComponent {
   name: string;
@@ -13,9 +13,7 @@ export class RegisterComponent {
   password: string;
   photo: File;
 
-  constructor(
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService) {}
 
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
@@ -24,7 +22,7 @@ export class RegisterComponent {
     }
   }
 
-  register(){
+  register() {
     let formData: FormData = new FormData();
     formData.append('Name', this.name);
     formData.append('Surname', this.surname);
@@ -34,9 +32,12 @@ export class RegisterComponent {
     formData.append('Photo', this.photo);
 
     this.userService.register(formData).subscribe(
-      (response) => { alert(response) },
-      (error) => { console.log(error); });
+      (response) => {
+        alert(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-
-
 }
