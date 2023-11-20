@@ -24,9 +24,9 @@ Teknik Gereksinimler
 
 Extra Yapılabilecekler 
 
-·         Kayıt sonrası hoş geldiniz maili atılması 
+·         Kayıt sonrası hoş geldiniz maili atılması +++
 
-·         Toplantı bilgilendirme maili atılması 
+·         Toplantı bilgilendirme maili atılması +++
 
 ·         Uygulamanın yayına alınması 
 
@@ -45,3 +45,5 @@ Extra Yapılabilecekler
 ·         Api katmanında Swagger desteği 
 
 ·         Dockerfile ve docker-compose dosyasının oluşturulması 
+
+
