@@ -44,6 +44,6 @@ Extra Yapılabilecekler
 
 ·         Api katmanında Swagger desteği 
 
-·         Dockerfile ve docker-compose dosyasının oluşturulması 
+·         Dockerfile ve docker-compose dosyasının oluşturulması  +++
 
 
