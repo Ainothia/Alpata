@@ -42,7 +42,7 @@ Extra Yapılabilecekler
 
 ·         Api katmanında JWT auth desteği 
 
-·         Api katmanında Swagger desteği 
+·         Api katmanında Swagger desteği +++
 
 ·         Dockerfile ve docker-compose dosyasının oluşturulması  +++
 
