@@ -23,7 +23,8 @@ public class UserController : Controller
     public User Save([FromForm] SaveUserRequestDto saveUserRequestDto)
     {
         var user = _userService.Save(saveUserRequestDto);
-        _userService.SendMailAfterRegister(saveUserRequestDto);
+
+        _mailHelper.SendMailAfterRegister(saveUserRequestDto);
 
         return user;
     }

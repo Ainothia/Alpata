@@ -19,9 +19,17 @@ public class MeetingManager : IMeetingService
 
     public Meeting Create(SaveMeetingRequestDto createMeetingRequestDto)
     {
+        var user = _dbContext.Users.Find(createMeetingRequestDto.UserId);
+
+        if(user == null)
+        {
+            throw new ArgumentNullException("User has not found.");
+        }
+
         Meeting entity = new Meeting
         {
             UserId = createMeetingRequestDto.UserId,
+            User = user,
             Name = createMeetingRequestDto.Name,
             Description = createMeetingRequestDto.Description,
             StartDate = createMeetingRequestDto.StartDate,
@@ -71,11 +79,6 @@ public class MeetingManager : IMeetingService
             .AsNoTracking()
             .Where(x => x.UserId == userId)
             .ToList();
-
-        if (!entity.Any())
-        {
-            throw new ArgumentNullException("Meeting has not found.");
-        }
 
         return entity;
     }

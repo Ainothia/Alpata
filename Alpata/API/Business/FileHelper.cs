@@ -8,6 +8,11 @@ namespace Alpata.API.Business
         {
             var filePath = "API/Files/";
 
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
             if (file != null && file.Length > 0)
             {
                 filePath = filePath + file.FileName;
