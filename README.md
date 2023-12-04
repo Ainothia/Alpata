@@ -47,3 +47,19 @@ Extra Yapılabilecekler
 ·         Dockerfile ve docker-compose dosyasının oluşturulması  +++
 
 
+SQL:
+
+Select 'Gets date and count group by date' as Description ,null as UserName,CONVERT(date, StartDate) as StartDate,COUNT(CONVERT(date, StartDate)) as Count
+FROM dbo.Meetings
+GROUP BY CONVERT(date, StartDate)
+UNION ALL
+Select 'gets only date group by date' as Description,null as UserName,CONVERT(date, StartDate) as StartDate,null as Count
+From Meetings
+UNION ALL
+SElECT 'gets username, date and count group by name and date' as Description,u.Name as UserName,CONVERT(date, m.StartDate) as StartDate,COUNT(1) as Count
+FROM Meetings as m
+INNER JOIN Users as u on u.Id = m.UserId
+group by u.Name, CONVERT(date, m.StartDate);
+
+
+
